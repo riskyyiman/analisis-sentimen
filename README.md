@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 KySense AI | Intelligent Sentiment Analytics
 
-## Getting Started
+**KySense AI** adalah platform analisis sentimen mutakhir yang dirancang untuk membantu pengembang memahami emosi pengguna melampaui sekadar rating bintang. Dengan memanfaatkan model **Deep Learning Bi-LSTM**, aplikasi ini mengekstraksi ulasan dari Google Play Store dan mengubah teks mentah menjadi wawasan strategis secara *real-time*.
 
-First, run the development server:
+---
 
+## ✨ Fitur Utama
+
+* **Deep Learning Analysis (Bi-LSTM PRO):** Menggunakan model arsitektur Bi-LSTM untuk memahami konteks emosi dan data yang dapat dieksekusi.
+* **Google Play Scraping:** Ekstraksi ulasan pengguna secara langsung dari sumbernya melalui URL Google Play Store.
+* **Auto-Balancing Dataset:** Sistem secara otomatis menyeimbangkan data ulasan positif, netral, dan negatif untuk memberikan hasil analisis yang adil.
+* **Panel Analisis Interaktif:** Dashboard untuk konfigurasi parameter scraping seperti URL dan jumlah ulasan.
+* **Visualisasi Statistik:** Menampilkan ringkasan total sentimen positif, netral, dan negatif secara visual.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+* **Framework:** Next.js (App Router)
+* **Styling:** Tailwind CSS
+* **Animations:** Framer Motion
+* **Icons:** Lucide React
+
+### Backend
+* **Language:** Python
+* **Framework:** Flask
+* **AI Engine:** TensorFlow/Keras (Model Bi-LSTM)
+* **Scraping:** google-play-scraper
+
+---
+
+## 🚀 Alur Kerja (Workflow Pipeline)
+
+1.  **Target Source:** Salin tautan aplikasi dari Google Play Store yang ingin dianalisis.
+2.  **Set Parameters:** Tentukan jumlah sampel ulasan untuk proses penyeimbangan otomatis.
+3.  **AI Execution:** Jalankan model Bi-LSTM untuk memetakan pola emosi pengguna secara instan.
+
+---
+
+## ⚙️ Instalasi
+
+### Prasyarat
+* Node.js (v18+)
+* Python (v3.10+)
+
+### Setup Server (Backend)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd server
+pip install -r requirements.txt
+python app.py
 ```
+### Setup Client (Frontend)
+``` bash
+cd client
+npm install
+npm run dev
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
