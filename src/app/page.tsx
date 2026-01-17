@@ -15,21 +15,40 @@ export default function App() {
   const [result, setResult] = useState<any>(null);
 
   const handleAnalyze = async () => {
+    // Validasi input URL kosong
     if (!url) return alert('Masukkan URL aplikasi!');
+
     setLoading(true);
+    setResult(null); // Reset hasil sebelumnya saat mulai analisis baru
 
     try {
-      const response = await fetch('http://localhost:5000/analyze', {
+      // 1. Ambil URL Backend dari Environment Variable
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+      // 2. Cek Safety: Pastikan variabel environment sudah ada
+      if (!apiUrl) {
+        console.error('❌ EROR FATAL: NEXT_PUBLIC_API_URL tidak ditemukan!');
+        throw new Error('Konfigurasi server belum diatur. Cek file .env Anda.');
+      }
+
+      // 3. Debugging: Cek di Console browser kemana request dikirim
+      console.log('🚀 Mengirim request ke:', `${apiUrl}/analyze`);
+
+      const response = await fetch(`${apiUrl}/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url, count }),
       });
 
       const data = await response.json();
+
+      // Jika backend mengirim respon error
       if (data.error) throw new Error(data.error);
 
+      // Simpan hasil jika sukses
       setResult(data);
 
+      // Scroll otomatis ke bawah setelah hasil muncul
       setTimeout(() => {
         window.scrollTo({
           top: document.body.scrollHeight,
@@ -37,7 +56,8 @@ export default function App() {
         });
       }, 100);
     } catch (error: any) {
-      alert(error.message || 'Gagal melakukan analisis');
+      console.error('Terjadi kesalahan:', error);
+      alert(error.message || 'Gagal melakukan analisis. Pastikan server backend aktif.');
     } finally {
       setLoading(false);
     }
