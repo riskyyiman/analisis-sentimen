@@ -48,4 +48,7 @@ cd client
 npm install
 npm run dev
 
+```
+by risky
+
 
